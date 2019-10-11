@@ -53,11 +53,16 @@ export default class Hero extends React.Component {
           <h1 className="hero_name">Hello, {this.state.name}</h1>
         ) : (
           <React.Fragment>
-            <h3>Hello! What is your name?</h3>
-            <input type="text" onKeyDown={this.handleInput} />
+            <h3 className="hero_welcome">Hello!</h3>
+            <input
+              className="hero_name_input"
+              type="text"
+              placeholder="What is your name?"
+              onKeyDown={this.handleInput}
+            />
           </React.Fragment>
         )}
-        <h4>{this.state.currentTime}</h4>
+        <h4 className="hero_clock">{this.state.currentTime}</h4>
       </div>
     );
   }
