@@ -1,4 +1,6 @@
 import React from "react";
+import Sidebar from "../layout/sidebar";
+import Loader from "../layout/loader";
 import "./styles.scss";
 
 export default class Hero extends React.Component {
@@ -20,6 +22,9 @@ export default class Hero extends React.Component {
       minutes = this.checkTime(minutes);
       this.setState({ currentTime: `${hours}:${minutes}` });
     }, 500);
+    setTimeout(() => {
+      this.hideLoader();
+    }, 3000);
   }
 
   checkTime = i => {
@@ -46,9 +51,13 @@ export default class Hero extends React.Component {
     }
   };
 
+  hideLoader = () => (document.getElementById("loader").style.display = "none");
+
   render() {
     return (
       <div id="hero">
+        <Loader />
+        <Sidebar />
         {this.state.exists ? (
           <h1 className="hero_name">Hello, {this.state.name}</h1>
         ) : (
