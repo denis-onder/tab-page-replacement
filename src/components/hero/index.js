@@ -57,9 +57,11 @@ export default class Hero extends React.Component {
     return (
       <div id="hero">
         <Loader />
-        <Sidebar />
         {this.state.exists ? (
-          <h1 className="hero_name">Hello, {this.state.name}</h1>
+          <React.Fragment>
+            <Sidebar />
+            <h1 className="hero_name">Hello, {this.state.name}</h1>
+          </React.Fragment>
         ) : (
           <React.Fragment>
             <h3 className="hero_welcome">Hello!</h3>
