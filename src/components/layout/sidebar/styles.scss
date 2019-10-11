@@ -17,15 +17,19 @@ $dark_blue: rgb(0, 108, 161);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .sidebar_list_link {
+      text-decoration: none;
+      width: 100%;
+    }
     .sidebar_list_item {
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;
       height: 64px;
-      transition: all ease-in-out 0.2s;
       cursor: pointer;
+      transition: all ease-in-out 0.2s;
       &:hover {
         background-color: $dark_blue;
       }
@@ -38,4 +42,8 @@ $dark_blue: rgb(0, 108, 161);
       }
     }
   }
+}
+
+.active {
+  background-color: $light_blue;
 }
