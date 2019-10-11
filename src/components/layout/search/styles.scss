@@ -1,0 +1,19 @@
+#search {
+  .search_box {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-size: 36px;
+    &::placeholder {
+      color: #fff;
+      text-align: center;
+    }
+    &:focus {
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+}
