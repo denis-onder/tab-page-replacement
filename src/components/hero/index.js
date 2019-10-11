@@ -12,6 +12,7 @@ export default class Hero extends React.Component {
   }
 
   componentDidMount() {
+    this.checkForUser();
     setInterval(() => {
       const current = new Date();
       const hours = current.getHours();
@@ -28,10 +29,34 @@ export default class Hero extends React.Component {
     return i;
   };
 
+  checkForUser = () => {
+    const { name } = localStorage;
+    if (name) {
+      this.setState({ exists: true });
+      this.setState({ name });
+      return;
+    }
+    return this.setState({ exists: false });
+  };
+
+  handleInput = e => {
+    if (e.keyCode === 13) {
+      localStorage.setItem("name", e.target.value);
+      this.checkForUser();
+    }
+  };
+
   render() {
     return (
       <div id="hero">
-        <h1 className="hero_name">Hello, undefined</h1>
+        {this.state.exists ? (
+          <h1 className="hero_name">Hello, {this.state.name}</h1>
+        ) : (
+          <React.Fragment>
+            <h3>Hello! What is your name?</h3>
+            <input type="text" onKeyDown={this.handleInput} />
+          </React.Fragment>
+        )}
         <h4>{this.state.currentTime}</h4>
       </div>
     );
