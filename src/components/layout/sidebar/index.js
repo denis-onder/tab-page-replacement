@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 
 const activeLink = e => {
-  const elements = document.getElementsByClassName("sidebar_list_item");
+  const elements = document.getElementsByClassName("internal_link");
   const target = document.getElementById(e.currentTarget.id);
   target.classList.toggle("active");
   for (let i = 0; i < elements.length; i++) {
@@ -34,10 +34,18 @@ export default function Sidebar() {
             <i className="sidebar_list_item_icon fab fa-linkedin"></i>
           </li>
         </a>
-        <li id="feed" className="sidebar_list_item" onClick={activeLink}>
+        <li
+          id="feed"
+          className="sidebar_list_item internal_link"
+          onClick={activeLink}
+        >
           <i className="sidebar_list_item_icon fas fa-rss-square"></i>
         </li>
-        <li id="settings" className="sidebar_list_item" onClick={activeLink}>
+        <li
+          id="settings"
+          className="sidebar_list_item internal_link"
+          onClick={activeLink}
+        >
           <i className="sidebar_list_item_icon fas fa-cogs"></i>
         </li>
       </ul>
