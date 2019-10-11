@@ -4,9 +4,15 @@ import "./styles.scss";
 const activeLink = e => {
   const elements = document.getElementsByClassName("internal_link");
   const target = document.getElementById(e.currentTarget.id);
+  const targetWindow = document.getElementById(`${e.currentTarget.id}_window`);
   target.classList.toggle("active");
   for (let i = 0; i < elements.length; i++) {
     if (elements[i] !== target) elements[i].classList.remove("active");
+  }
+  if (targetWindow.style.display === "flex") {
+    targetWindow.style.display = "none";
+  } else {
+    targetWindow.style.display = "flex";
   }
 };
 

@@ -2,6 +2,8 @@ import React from "react";
 import Sidebar from "../layout/sidebar";
 import Loader from "../layout/loader";
 import Search from "../layout/search";
+import Feed from "../feed";
+import Settings from "../settings";
 import "./styles.scss";
 
 export default class Hero extends React.Component {
@@ -63,6 +65,8 @@ export default class Hero extends React.Component {
             <Sidebar />
             <h1 className="hero_name">Hello, {this.state.name}</h1>
             <Search />
+            <Feed />
+            <Settings />
           </React.Fragment>
         ) : (
           <React.Fragment>
