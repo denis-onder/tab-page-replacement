@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.scss";
-
 export default class Feed extends React.Component {
   constructor() {
     super();
