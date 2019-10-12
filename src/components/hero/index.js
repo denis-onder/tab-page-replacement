@@ -19,11 +19,16 @@ export default class Hero extends React.Component {
   componentDidMount() {
     this.checkForUser();
     setInterval(() => {
+      const { time } = localStorage;
       const current = new Date();
+      const current12 = current.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
       const hours = current.getHours();
       let minutes = current.getMinutes();
       minutes = this.checkTime(minutes);
+      if(time === "24")
       this.setState({ currentTime: `${hours}:${minutes}` });
+      else
+      this.setState({ currentTime: current12 });
     }, 500);
     setTimeout(() => {
       this.hideLoader();
