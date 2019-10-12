@@ -31,11 +31,26 @@ export default class Feed extends React.Component {
     }
   };
 
+  fixBrokenImages = () => {
+    console.log("change");
+    Array.from(document.getElementsByClassName("feed_post_img")).forEach(
+      img => {
+        const attr = img.getAttribute("src");
+        if (attr === "self" || attr === "" || attr === "nsfw") {
+          img.setAttribute(
+            "src",
+            "http://www.exceptnothing.com/wp-content/uploads/2014/11/Reddit-Logo.png"
+          );
+        }
+      }
+    );
+  };
+
   render() {
     return (
       <div id="feed_window" style={{ display: "none" }}>
         {this.state.exists ? (
-          <div className="feed_output">
+          <div className="feed_output" onLoad={this.fixBrokenImages}>
             {this.state.data.map(({ data: post }, i) => (
               <div className="feed_post" key={i}>
                 <img
