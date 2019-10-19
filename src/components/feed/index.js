@@ -32,7 +32,6 @@ export default class Feed extends React.Component {
   };
 
   fixBrokenImages = () => {
-    console.log("change");
     Array.from(document.getElementsByClassName("feed_post_img")).forEach(
       img => {
         const attr = img.getAttribute("src");
@@ -48,7 +47,7 @@ export default class Feed extends React.Component {
 
   render() {
     return (
-      <div id="feed_window" style={{ display: "none" }}>
+      <div id="feed_window" className="window" style={{ display: "none" }}>
         {this.state.exists ? (
           <div className="feed_output" onLoad={this.fixBrokenImages}>
             {this.state.data.map(({ data: post }, i) => (
