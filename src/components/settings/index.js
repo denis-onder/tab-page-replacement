@@ -14,7 +14,8 @@ export default function Settings() {
     else timeFormat = "24";
     localStorage.setItem(target, timeFormat);
   };
-  let getTimeFormat = localStorage.getItem("time");
+  // Default time format should be the 12 hour format
+  let getTimeFormat = localStorage.getItem("time") || "12";
 
   return (
     <div id="settings_window" className="window" style={{ display: "none" }}>
