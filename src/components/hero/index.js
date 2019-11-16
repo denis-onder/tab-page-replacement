@@ -14,6 +14,15 @@ export default class Hero extends React.Component {
         new Date().getMinutes()
       )}`
     };
+    let bgImg = new Image();
+    bgImg.onload = () => {
+      document.getElementById(
+        "App"
+      ).style.background = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url(${bgImg.src})`;
+      this.hideLoader();
+    };
+    bgImg.src = "https://source.unsplash.com/daily";
   }
 
   componentDidMount() {
@@ -21,18 +30,17 @@ export default class Hero extends React.Component {
     setInterval(() => {
       const { time } = localStorage;
       const current = new Date();
-      const current12 = current.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+      const current12 = current.toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true
+      });
       const hours = current.getHours();
       let minutes = current.getMinutes();
       minutes = this.checkTime(minutes);
-      if(time === "24")
-      this.setState({ currentTime: `${hours}:${minutes}` });
-      else
-      this.setState({ currentTime: current12 });
+      if (time === "24") this.setState({ currentTime: `${hours}:${minutes}` });
+      else this.setState({ currentTime: current12 });
     }, 500);
-    setTimeout(() => {
-      this.hideLoader();
-    }, 3000);
   }
 
   checkTime = i => {
