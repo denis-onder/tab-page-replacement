@@ -14,7 +14,32 @@ export default class Hero extends React.Component {
         new Date().getMinutes()
       )}`
     };
-    let bgImg = new Image();
+    this.setBackground();
+    setInterval(this.setTime, 500);
+  }
+
+  componentDidMount() {
+    this.checkForUser();
+  }
+
+  setTime = () => {
+    const { time } = localStorage;
+    const current = new Date();
+    const current12 = current.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true
+    });
+    let hours = current.getHours();
+    let minutes = current.getMinutes();
+    hours = this.checkTime(hours);
+    minutes = this.checkTime(minutes);
+    if (time === "24") this.setState({ currentTime: `${hours}:${minutes}` });
+    else this.setState({ currentTime: current12 });
+  };
+
+  setBackground = () => {
+    const bgImg = new Image();
     bgImg.onload = () => {
       document.getElementById(
         "App"
@@ -23,25 +48,7 @@ export default class Hero extends React.Component {
       this.hideLoader();
     };
     bgImg.src = "https://source.unsplash.com/daily";
-  }
-
-  componentDidMount() {
-    this.checkForUser();
-    setInterval(() => {
-      const { time } = localStorage;
-      const current = new Date();
-      const current12 = current.toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true
-      });
-      const hours = current.getHours();
-      let minutes = current.getMinutes();
-      minutes = this.checkTime(minutes);
-      if (time === "24") this.setState({ currentTime: `${hours}:${minutes}` });
-      else this.setState({ currentTime: current12 });
-    }, 500);
-  }
+  };
 
   checkTime = i => {
     if (i < 10) {
