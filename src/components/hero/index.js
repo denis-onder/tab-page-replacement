@@ -10,7 +10,7 @@ export default class Hero extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentTime: `${new Date().getHours()}:${this.checkTime(
+      currentTime: `${this.checkTime(new Date().getHours())}:${this.checkTime(
         new Date().getMinutes()
       )}`
     };
@@ -39,6 +39,11 @@ export default class Hero extends React.Component {
   };
 
   setBackground = () => {
+    // Unsplash API links
+    const sources = [
+      "https://source.unsplash.com/1920x1080/?nature",
+      "https://source.unsplash.com/daily"
+    ];
     const bgImg = new Image();
     bgImg.onload = () => {
       document.getElementById(
@@ -47,7 +52,7 @@ export default class Hero extends React.Component {
           url(${bgImg.src})`;
       this.hideLoader();
     };
-    bgImg.src = "https://source.unsplash.com/daily";
+    bgImg.src = sources[Math.floor(Math.random() * sources.length)];
   };
 
   checkTime = i => {
