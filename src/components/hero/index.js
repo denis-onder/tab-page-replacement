@@ -14,8 +14,8 @@ export default class Hero extends React.Component {
         new Date().getMinutes()
       )}`
     };
-    this.setBackground();
     setInterval(this.setTime, 500);
+    this.setBackground();
   }
 
   componentDidMount() {
