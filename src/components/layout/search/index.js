@@ -5,6 +5,7 @@ export default class Search extends React.Component {
   constructor() {
     super();
     this.state = {
+      pattern: /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
       input: ""
     };
   }
@@ -14,10 +15,17 @@ export default class Search extends React.Component {
   };
 
   handleKeyPress = ({ keyCode }) => {
-    const generateQuery = param =>
-      `https://duckduckgo.com/?q=${param}&t=canonical&ia=web`;
+    // If input resolves into an actual website URL, instead of searching, open the URL
+    // FIXME: This approach only works with relative URLs.
     if (keyCode === 13) {
-      window.open(generateQuery(this.state.input.split(" ").join("+")));
+      const { pattern, input: param } = this.state;
+      window.open(
+        pattern.test(param)
+          ? `https://${param.replace(" ", "")}`
+          : `https://duckduckgo.com/?q=${param
+              .split(" ")
+              .join("+")}&t=canonical&ia=web`
+      );
     }
   };
 
