@@ -61,6 +61,7 @@ export default function Settings() {
           type="text"
           className="settings_option_action"
           onKeyDown={setColor}
+          placeholder={localStorage.getItem("color") || ""}
         />
       </div>
     </div>
