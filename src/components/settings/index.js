@@ -16,6 +16,11 @@ export default function Settings() {
   };
   // Default time format should be the 12 hour format
   let getTimeFormat = localStorage.getItem("time") || "12";
+  // Set loader background color
+  const setColor = e => {
+    if (e.keyCode !== 13) return;
+    localStorage.setItem("color", e.target.value);
+  };
 
   return (
     <div id="settings_window" className="window" style={{ display: "none" }}>
@@ -49,6 +54,14 @@ export default function Settings() {
         >
           {getTimeFormat}
         </button>
+      </div>
+      <div className="settings_option">
+        <p className="settings_option_name">Set loader background color:</p>
+        <input
+          type="text"
+          className="settings_option_action"
+          onKeyDown={setColor}
+        />
       </div>
     </div>
   );
